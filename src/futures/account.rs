@@ -194,6 +194,18 @@ impl FuturesAccount {
         self.client.delete_signed_p("/fapi/v1/order", &o, recv_window).await
     }
 
+    /// Position Information for a specific market.
+    ///
+    /// # Examples
+    /// ```rust,no_run    
+    /// use binance::{api::Binance, config::Config, futures::account::FuturesAccount};
+    /// let api_key = Some("".into());
+    /// let secret_key = Some("".into());
+    /// let account = FuturesAccount::new_with_config(api_key, secret_key, &Config::testnet());
+    /// let symbol = "BTCUSDT";
+    /// let resp = tokio_test::block_on(account.position_information(symbol));
+    /// assert!(resp.is_ok(), "{:?}", resp);
+    /// ```
     pub async fn position_information<S>(&self, symbol: S) -> Result<Vec<Position>>
     where
         S: Into<String>,

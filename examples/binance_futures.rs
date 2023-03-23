@@ -129,4 +129,9 @@ async fn account() {
         Ok(answer) => info!("Account Info: {:?}", answer),
         Err(e) => error!("Error: {:?}", e),
     }
+
+    match account.position_information("BTCUSDT").await {
+        Ok(answer) => info!("Position information: {:?}", answer),
+        Err(e) => error!("Error: {:?}", e),
+    }
 }
